@@ -1,0 +1,52 @@
+html_content = """<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Топ 100 Рецептів</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6 font-sans">
+  <div id="root"></div>
+  <script type="text/babel">
+    function App() {
+      const dishes = [
+        { name: "Борщ", emoji: "🍲", desc: "Традиційний український суп з буряком." },
+        { name: "Вареники", emoji: "🥟", desc: "Неймовірні вареники з картоплею та сметаною." },
+        { name: "Голубці", emoji: "🥬", desc: "Рис із м'ясом, загорнутий у капустяне листя." },
+        { name: "Деруни", emoji: "🥔", desc: "Смажені картопляні млинці з хрусткою скоринкою." },
+        { name: "Котлета по-київськи", emoji: "🍗", desc: "Соковита куряча котлета з маслом всередині." },
+        { name: "Сало з часником", emoji: "🥓", desc: "Справжня українська закуска." },
+        { name: "Сирники", emoji: "🥞", desc: "Солодкі сирники з джемом або медом." }
+      ];
+
+      return (
+        <div className="max-w-2xl mx-auto">
+          <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">🍽️ Топ Рецептів</h1>
+          <div className="space-y-4">
+            {dishes.map((dish, i) => (
+              <div key={i} className="bg-white p-4 rounded-lg shadow border border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-800">{dish.emoji} {dish.name}</h2>
+                <p className="text-gray-600 mt-2">{dish.desc}</p>
+                <button className="mt-3 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                  Подивитися рецепт
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
+"""
+
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("File generated.")
