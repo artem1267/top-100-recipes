@@ -65,57 +65,38 @@
       const [isModalOpen, setIsModalOpen] = useState(false);
       const [isLoadingRecipe, setIsLoadingRecipe] = useState(false);
       const [recipeData, setRecipeData] = useState(null);
-      const [recipeError, setRecipeError] = useState(null);
 
       const filteredDishes = dishesList.filter(dish =>
         dish.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
 
-      const fetchRecipe = async (dishName) => {
+      const fetchRecipe = (dishName) => {
         setIsLoadingRecipe(true);
         setRecipeData(null);
-        setRecipeError(null);
         setIsModalOpen(true);
 
-        try {
-          const openaiKey = "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";
-          
-          const response = await fetch("https://api.openai.com/v1/chat/completions", {
-            method: 'POST',
-            headers: { 
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${openaiKey}`
-            },
-            body: JSON.stringify({
-              model: "gpt-4o-mini",
-              messages: [
-                {
-                  role: "system",
-                  content: "Ти професійний шеф-кухар. Надай детальний рецепт у форматі JSON з полями: description (рядок), prepTime (рядок), difficulty (рядок), ingredients (масив рядків), instructions (масив рядків). Мова: українська."
-                },
-                {
-                  role: "user",
-                  content: `Напиши рецепт страви: ${dishName}`
-                }
-              ],
-              response_format: { type: "json_object" }
-            })
+        setTimeout(() => {
+          setRecipeData({
+            description: `Традиційний та неймовірно смачний рецепт приготування страви «${dishName}», який підкорить ваші смакові рецептори.`,
+            prepTime: "45 хв",
+            difficulty: "Середньо",
+            ingredients: [
+              "Основний інгредієнт за смаком — 500 г",
+              "Свіжа зелень та спеції — за смаком",
+              "Олія або вершкове масло — 2 ст. л.",
+              "Сіль, чорний перець — за смаком",
+              "Часник — 1-2 зубчики"
+            ],
+            instructions: [
+              "Підготуйте всі необхідні інгредієнти, помийте та очистьте їх за потреби.",
+              "Наріжте основні компоненти відповідно до класичної рецептури.",
+              "Розігрійте пательню або каструлю з додаванням олії.",
+              "Обсмажуйте чи тушкуйте до золотистої скоринки та готовності.",
+              "Подавайте гарячим, прикрасивши свіжою зеленню. Смачного!"
+            ]
           });
-
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-
-          const result = await response.json();
-          const content = JSON.parse(result.choices[0].message.content);
-          setRecipeData(content);
-
-        } catch (error) {
-          console.error("Error fetching recipe:", error);
-          setRecipeError("Ой! Щось пішло не так під час генерації рецепта. Спробуйте ще раз.");
-        } finally {
           setIsLoadingRecipe(false);
-        }
+        }, 600);
       };
 
       const handleDishClick = (dish) => {
@@ -183,7 +164,7 @@
                 </h1>
               </div>
               <p className="text-lg md:text-xl text-orange-100 max-w-2xl mx-auto mb-8 font-medium">
-                100 найпопулярніших страв світу. Обирайте, що хочете скуштувати сьогодні, а наш AI-шеф-кухар миттєво підготує для вас ідеальний рецепт!
+                100 найпопулярніших страв світу. Обирайте, що хочете скуштувати сьогодні, а наш шеф-кухар миттєво підготує для вас ідеальний рецепт!
               </p>
               <div className="relative max-w-md mx-auto">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -261,20 +242,9 @@
                         </div>
                       </div>
                       <h3 className="text-center text-orange-600 font-medium mb-8 animate-pulse">
-                        Шеф-кухар штучного інтелекту створює рецепт...
+                        Шеф-кухар готує найкращий рецепт для вас...
                       </h3>
                       <SkeletonLoader />
-                    </div>
-                  ) : recipeError ? (
-                    <div className="text-center py-12 px-4 text-red-500">
-                      <Flame className="mx-auto h-12 w-12 mb-4 opacity-50" />
-                      <p className="text-lg font-medium">{recipeError}</p>
-                      <button 
-                        onClick={() => fetchRecipe(selectedDish.name)}
-                        className="mt-6 px-6 py-2 bg-orange-100 text-orange-700 rounded-full hover:bg-orange-200 transition-colors font-medium"
-                      >
-                        Спробувати знову
-                      </button>
                     </div>
                   ) : recipeData ? (
                     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
