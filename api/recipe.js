@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   }
 
   const { dishName } = req.body;
-  const apiKey = process.env.apikey; // Це та змінна, яку ти щойно зберіг на Vercel!
+  const apiKey = process.env.GEMINI_API_KEY; // Це та змінна, яку ти щойно зберіг на Vercel!
 
   if (!apiKey) {
     return res.status(500).json({ error: 'API key is not configured on server' });
