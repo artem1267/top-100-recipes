@@ -6,36 +6,43 @@
   <title>Смачний Світ - Топ 100 Рецептів</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-orange-50 text-stone-800 min-h-screen">
+<body class="bg-orange-50 text-stone-800 min-h-screen flex flex-col">
 
   <header class="bg-gradient-to-r from-orange-500 to-red-500 text-white py-10 px-4 shadow-lg sticky top-0 z-10">
-    <div class="max-w-4xl mx-auto text-center">
-      <h1 class="text-3xl md:text-4xl font-extrabold mb-2">🍳 Смачний Світ</h1>
-      <p class="text-orange-100 text-sm md:text-base mb-6">Обирай страву, а ШІ-шеф миттєво підготує для тебе ідеальний рецепт!</p>
-      <input 
-        type="text" 
-        id="searchInput" 
-        oninput="filterDishes()" 
-        placeholder="Шукати страву (напр. Борщ, Суші)..." 
-        class="w-full max-w-md px-4 py-3 rounded-full text-stone-800 focus:outline-none focus:ring-4 focus:ring-orange-300 shadow-inner"
-      />
+    <div class="max-w-5xl mx-auto text-center">
+      <h1 class="text-3xl md:text-5xl font-extrabold mb-3 flex items-center justify-center gap-3">
+        <span>🍳</span> Смачний Світ
+      </h1>
+      <p class="text-orange-100 text-base md:text-lg mb-6 max-w-xl mx-auto">
+        100 найпопулярніших страв світу. Обирай, що хочеш скуштувати, а наш ШІ-шеф миттєво підготує ідеальний рецепт!
+      </p>
+      <div class="relative max-w-md mx-auto">
+        <input 
+          type="text" 
+          id="searchInput" 
+          oninput="filterDishes()" 
+          placeholder="Шукати страву (напр. Борщ, Суші, Піца)..." 
+          class="w-full px-5 py-3.5 pl-11 rounded-full text-stone-800 bg-white placeholder-stone-400 focus:outline-none focus:ring-4 focus:ring-orange-300 shadow-md text-lg"
+        />
+        <svg class="absolute left-4 top-4 w-5 h-5 text-stone-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </div>
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 py-8">
-    <div id="dishesGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+  <main class="max-w-7xl mx-auto px-4 py-10 flex-1 w-full">
+    <div id="dishesGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
       <!-- Страви генеруються через JS -->
     </div>
   </main>
 
   <!-- Модальне вікно рецепта -->
-  <div id="recipeModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden">
-      <div class="flex items-center justify-between px-6 py-4 bg-orange-100 border-b">
-        <h2 id="modalTitle" class="text-2xl font-bold text-orange-900">Рецепт</h2>
-        <button onclick="closeModal()" class="text-stone-500 hover:text-red-500 text-2xl font-bold">&times;</button>
+  <div id="recipeModal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm hidden items-center justify-center p-4 z-50 transition-all">
+    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95">
+      <div class="flex items-center justify-between px-6 py-4 bg-orange-50 border-b border-orange-100">
+        <h2 id="modalTitle" class="text-2xl font-bold text-orange-900 flex items-center gap-2">Рецепт</h2>
+        <button onclick="closeModal()" class="p-2 text-stone-400 hover:text-red-500 hover:bg-red-50 rounded-full transition text-xl font-bold w-10 h-10 flex items-center justify-center">&times;</button>
       </div>
-      <div id="modalContent" class="p-6 overflow-y-auto space-y-4">
+      <div id="modalContent" class="p-6 md:p-8 overflow-y-auto space-y-6">
         <!-- Вміст рецепта -->
       </div>
     </div>
@@ -47,22 +54,50 @@
     const dishes = [
       { name: "Борщ", emoji: "🍲" }, { name: "Вареники", emoji: "🥟" }, { name: "Голубці", emoji: "🥬" },
       { name: "Деруни", emoji: "🥔" }, { name: "Сало з часником", emoji: "🥓" }, { name: "Сирники", emoji: "🥞" },
-      { name: "Котлета по-київськи", emoji: "🍗" }, { name: "Млинці", emoji: "🥞" }, { name: "Піца Маргарита", emoji: "🍕" },
-      { name: "Спагеті Карбонара", emoji: "🍝" }, { name: "Суші", emoji: "🍣" }, { name: "Роли Філадельфія", emoji: "🍱" },
-      { name: "Рамен", emoji: "🍜" }, { name: "Том Ям", emoji: "🍲" }, { name: "Хачапурі", emoji: "🧀" },
+      { name: "Котлета по-київськи", emoji: "🍗" }, { name: "Млинці", emoji: "🥞" }, { name: "Капусняк", emoji: "🍲" },
+      { name: "Холодець", emoji: "🥩" }, { name: "Піца Маргарита", emoji: "🍕" }, { name: "Спагеті Карбонара", emoji: "🍝" },
+      { name: "Лазанья", emoji: "🥘" }, { name: "Різотто", emoji: "🍚" }, { name: "Тірамісу", emoji: "🍰" },
+      { name: "Равіолі", emoji: "🥟" }, { name: "Паста Болоньєзе", emoji: "🍝" }, { name: "Суші", emoji: "🍣" },
+      { name: "Роли Каліфорнія", emoji: "🍱" }, { name: "Роли Філадельфія", emoji: "🍱" }, { name: "Рамен", emoji: "🍜" },
+      { name: "Удон", emoji: "🍜" }, { name: "Том Ям", emoji: "🍲" }, { name: "Пад Тай", emoji: "🍝" },
+      { name: "Пекінська качка", emoji: "🦆" }, { name: "Фо Бо", emoji: "🍜" }, { name: "Хачапурі", emoji: "🧀" },
       { name: "Хінкалі", emoji: "🥟" }, { name: "Шашлик", emoji: "🍢" }, { name: "Плов", emoji: "🍛" },
-      { name: "Шаурма", emoji: "🥙" }, { name: "Бургер", emoji: "🍔" }, { name: "Стейк Рібай", emoji: "🥩" },
-      { name: "Картопля фрі", emoji: "🍟" }, { name: "Круасан", emoji: "🥐" }, { name: "Рататуй", emoji: "🍆" },
-      { name: "Паелья", emoji: "🥘" }, { name: "Тако", emoji: "🌮" }, { name: "Грецький салат", emoji: "🥗" },
-      { name: "Шніцель", emoji: "🥩" }, { name: "Чизкейк", emoji: "🍰" }, { name: "Морозиво", emoji: "🍦" }
+      { name: "Кебаб", emoji: "🌯" }, { name: "Шаурма", emoji: "🥙" }, { name: "Фалафель", emoji: "🧆" },
+      { name: "Хумус", emoji: "🥣" }, { name: "Бургер", emoji: "🍔" }, { name: "Чизбургер", emoji: "🍔" },
+      { name: "Хот-дог", emoji: "🌭" }, { name: "Стейк Рібай", emoji: "🥩" }, { name: "Картопля фрі", emoji: "🍟" },
+      { name: "Курячі нагетси", emoji: "🍗" }, { name: "Крильця Баффало", emoji: "🍗" }, { name: "Панкейки", emoji: "🥞" },
+      { name: "Брауні", emoji: "🍫" }, { name: "Круасан", emoji: "🥐" }, { name: "Багет", emoji: "🥖" },
+      { name: "Рататуй", emoji: "🍆" }, { name: "Цибулевий суп", emoji: "🍲" }, { name: "Еклери", emoji: "🥖" },
+      { name: "Макарон", emoji: "🍡" }, { name: "Паелья", emoji: "🥘" }, { name: "Тапас", emoji: "🌮" },
+      { name: "Гаспачо", emoji: "🍅" }, { name: "Чуррос", emoji: "🥨" }, { name: "Тако", emoji: "🌮" },
+      { name: "Буріто", emoji: "🌯" }, { name: "Кесадилья", emoji: "🌮" }, { name: "Начос", emoji: "🧀" },
+      { name: "Гуакамоле", emoji: "🥑" }, { name: "Енчилада", emoji: "🌯" }, { name: "Чилі кон карне", emoji: "🌶️" },
+      { name: "Мусака", emoji: "🍆" }, { name: "Грецький салат", emoji: "🥗" }, { name: "Сувлакі", emoji: "🍢" },
+      { name: "Гірос", emoji: "🥙" }, { name: "Дзадзикі", emoji: "🥣" }, { name: "Шніцель", emoji: "🥩" },
+      { name: "Сосиски Братвурст", emoji: "🌭" }, { name: "Брецель", emoji: "🥨" }, { name: "Шварцвальдський торт", emoji: "🍰" },
+      { name: "Фондю", emoji: "🧀" }, { name: "Раклет", emoji: "🧀" }, { name: "Гуляш", emoji: "🍲" },
+      { name: "Лобстер", emoji: "🦞" }, { name: "Устриці", emoji: "🦪" }, { name: "Мідії у вині", emoji: "🐚" },
+      { name: "Креветки на грилі", emoji: "🦐" }, { name: "Стейк із лосося", emoji: "🐟" }, { name: "Карпаччо", emoji: "🥩" },
+      { name: "Тартар", emoji: "🥩" }, { name: "Салат Цезар", emoji: "🥗" }, { name: "Салат Олів'є", emoji: "🥗" },
+      { name: "Вінегрет", emoji: "🥗" }, { name: "Окрошка", emoji: "🥣" }, { name: "Пельмені", emoji: "🥟" },
+      { name: "Чебуреки", emoji: "🥟" }, { name: "Біляші", emoji: "🥟" }, { name: "Самса", emoji: "🥟" },
+      { name: "Манти", emoji: "🥟" }, { name: "Кус-кус", emoji: "🍚" }, { name: "Тажин", emoji: "🥘" },
+      { name: "Каррі з куркою", emoji: "🍛" }, { name: "Тікка Масала", emoji: "🍛" }, { name: "Наан", emoji: "🫓" },
+      { name: "Самоса", emoji: "🥟" }, { name: "Путін", emoji: "🍟" }, { name: "Клем-чаудер", emoji: "🥣" },
+      { name: "Маффіни", emoji: "🧁" }, { name: "Донати", emoji: "🍩" }, { name: "Чизкейк", emoji: "🍰" },
+      { name: "Морозиво", emoji: "🍦" }
     ];
 
     function renderDishes(list) {
       const grid = document.getElementById("dishesGrid");
+      if (list.length === 0) {
+        grid.innerHTML = `<div class="col-span-full text-center py-20 text-stone-500 text-xl">Нічого не знайдено 😕</div>`;
+        return;
+      }
       grid.innerHTML = list.map(dish => `
-        <button onclick="openRecipe('${dish.name}', '${dish.emoji}')" class="flex flex-col items-center justify-center p-5 bg-white rounded-2xl shadow-sm border border-orange-100 hover:shadow-lg hover:border-orange-300 transition transform hover:-translate-y-1">
-          <span class="text-5xl mb-2">${dish.emoji}</span>
-          <span class="font-semibold text-stone-700 text-sm md:text-base text-center">${dish.name}</span>
+        <button onclick="openRecipe('${dish.name}', '${dish.emoji}')" class="group flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-sm border border-orange-100 hover:shadow-xl hover:border-orange-300 transition transform hover:-translate-y-1">
+          <span class="text-6xl mb-3 group-hover:scale-110 transition">${dish.emoji}</span>
+          <span class="font-semibold text-stone-700 text-base text-center group-hover:text-orange-600 transition">${dish.name}</span>
         </button>
       `).join('');
     }
@@ -78,8 +113,13 @@
       const title = document.getElementById("modalTitle");
       const content = document.getElementById("modalContent");
 
-      title.innerHTML = `${emoji} ${dishName}`;
-      content.innerHTML = `<div class="text-center py-10 text-orange-600 font-medium animate-pulse">Шеф-кухар штучного інтелекту готує рецепт... 🍳</div>`;
+      title.innerHTML = `${emoji}${dishName}`;
+      content.innerHTML = `
+        <div class="py-12 text-center space-y-4">
+          <div class="inline-block animate-bounce text-5xl">🍳</div>
+          <p class="text-orange-600 font-medium text-lg animate-pulse">Шеф-кухар штучного інтелекту готує рецепт для вас...</p>
+        </div>
+      `;
       modal.classList.remove("hidden");
       modal.classList.add("flex");
 
@@ -89,7 +129,7 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             contents: [{
-              parts: [{ text: `Напиши детальний рецепт страви: ${dishName} українською мовою. Надай опис, час приготування, складність, список інгредієнтів та покрокову інструкцію у форматі JSON з полями: description, prepTime, difficulty, ingredients (масив рядків), instructions (масив рядків). Поверни ТІЛЬКИ валідний JSON без додаткового форматування чи markdown.` }]
+              parts: [{ text: `Напиши детальний рецепт приготування страви: ${dishName}. Відповідь надай виключно українською мовою у форматі JSON з полями: description (цікавий опис), prepTime (час приготування, наприклад "45 хв"), difficulty (складність, наприклад "Легко" або "Середньо"), ingredients (масив рядків з інгредієнтами та кількістю), instructions (масив рядків з покроковими кроками приготування). Поверни ТІЛЬКИ валідний JSON без жодних додаткових символів чи markdown-обгорток (без \`\`\`json).` }]
             }]
           })
         });
@@ -97,31 +137,37 @@
         const data = await response.json();
         const textResponse = data.candidates[0].content.parts[0].text;
         
-        // Очищаємо від markdown обгорток якщо вони є
         const cleanJson = textResponse.replace(/```json/g, '').replace(/```/g, '').trim();
         const recipe = JSON.parse(cleanJson);
 
         content.innerHTML = `
-          <p class="text-stone-600 italic border-l-4 border-orange-400 pl-4 py-1">${recipe.description}</p>
-          <div class="flex gap-4 text-sm font-medium">
-            <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full">⏱ ${recipe.prepTime}</span>
-            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full">🔥 ${recipe.difficulty}</span>
+          <p class="text-stone-600 text-lg italic border-l-4 border-orange-400 pl-4 py-1 bg-orange-50/50 rounded-r-xl">${recipe.description}</p>
+          <div class="flex flex-wrap gap-3 font-medium">
+            <span class="bg-orange-100 text-orange-800 px-4 py-1.5 rounded-full text-sm">⏱ ${recipe.prepTime}</span>
+            <span class="bg-red-100 text-red-800 px-4 py-1.5 rounded-full text-sm">🔥 Складність: ${recipe.difficulty}</span>
           </div>
-          <div>
-            <h3 class="font-bold text-lg text-stone-800 mb-2">🛒 Інгредієнти:</h3>
-            <ul class="list-disc list-inside space-y-1 text-stone-700">
-              ${recipe.ingredients.map(i => `<li>${i}</li>`).join('')}
-            </ul>
-          </div>
-          <div>
-            <h3 class="font-bold text-lg text-stone-800 mb-2">👨‍🍳 Приготування:</h3>
-            <ol class="list-decimal list-inside space-y-2 text-stone-700">
-              ${recipe.instructions.map(step => `<li class="pl-1">${step}</li>`).join('')}
-            </ol>
+          <div class="grid md:grid-cols-3 gap-6 mt-4">
+            <div class="md:col-span-1 bg-stone-50 p-5 rounded-2xl border border-stone-100 h-fit">
+              <h3 class="font-bold text-lg text-stone-800 mb-3 flex items-center gap-2">🛒 Інгредієнти</h3>
+              <ul class="space-y-2 text-stone-700 text-sm">
+                ${recipe.ingredients.map(i => `<li class="flex items-start gap-2"><span class="text-orange-500 font-bold">•</span><span>${i}</span></li>`).join('')}
+              </ul>
+            </div>
+            <div class="md:col-span-2 space-y-4">
+              <h3 class="font-bold text-xl text-stone-800 flex items-center gap-2">👨‍🍳 Приготування</h3>
+              <div class="space-y-3">
+                ${recipe.instructions.map((step, idx) => `
+                  <div class="flex gap-3 bg-stone-50/70 p-3.5 rounded-xl border border-stone-100">
+                    <span class="flex-shrink-0 w-7 h-7 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold text-sm">${idx + 1}</span>
+                    <p class="text-stone-700 text-sm leading-relaxed pt-0.5">${step}</p>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
           </div>
         `;
       } catch (err) {
-        content.innerHTML = `<p class="text-red-500 text-center py-6">Не вдалося завантажити рецепт через ШІ. Спробуй ще раз пізніше!</p>`;
+        content.innerHTML = `<p class="text-red-500 text-center py-10">Не вдалося завантажити рецепт. Перевір підключення до мережі або спробуй пізніше!</p>`;
       }
     }
 
@@ -131,7 +177,10 @@
       modal.classList.add("hidden");
     }
 
-    // Завантажити початковий список
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
     renderDishes(dishes);
   </script>
 </body>
