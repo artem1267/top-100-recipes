@@ -1,6 +1,4 @@
-api_key = "AQ.Ab8RN6K61K5pV7OHrQy4NQFcKK4BcedaiPdEjgyAmdRTSNGW3Q"
-
-html_code = '''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
@@ -101,7 +99,7 @@ html_code = '''<!DOCTYPE html>
             }
           };
 
-          const apiKey = "''' + api_key + '''";
+          const apiKey = "AQ.Ab8RN6K61K5pV7OHrQy4NQFcKK4BcedaiPdEjgyAmdRTSNGW3Q";
           const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
           const response = await fetch(apiUrl, {
@@ -364,9 +362,3 @@ html_code = '''<!DOCTYPE html>
   </script>
 </body>
 </html>
-'''
-
-with open("index.html", "w", encoding="utf-8") as f:
-    f.write(html_code)
-
-print("File generated successfully with provided key.")
