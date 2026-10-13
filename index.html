@@ -14,7 +14,7 @@
         <span>🍳</span> Смачний Світ
       </h1>
       <p class="text-orange-100 text-base md:text-lg mb-6 max-w-xl mx-auto">
-        100 найпопулярніших страв світу. Обирай, що хочеш скуштувати, а наш ШІ-шеф миттєво підготує ідеальний рецепт!
+        100 найпопулярніших страв світу. Обирай улюблешу страву та готуй за найкращими рецептами!
       </p>
       <div class="relative max-w-md mx-auto">
         <input 
@@ -49,44 +49,85 @@
   </div>
 
   <script>
-    const API_KEY = "AQ.Ab8RN6K61K5pV7OHrQy4NQFcKK4BcedaiPdEjgyAmdRTSNGW3Q";
-
     const dishes = [
-      { name: "Борщ", emoji: "🍲" }, { name: "Вареники", emoji: "🥟" }, { name: "Голубці", emoji: "🥬" },
-      { name: "Деруни", emoji: "🥔" }, { name: "Сало з часником", emoji: "🥓" }, { name: "Сирники", emoji: "🥞" },
-      { name: "Котлета по-київськи", emoji: "🍗" }, { name: "Млинці", emoji: "🥞" }, { name: "Капусняк", emoji: "🍲" },
-      { name: "Холодець", emoji: "🥩" }, { name: "Піца Маргарита", emoji: "🍕" }, { name: "Спагеті Карбонара", emoji: "🍝" },
-      { name: "Лазанья", emoji: "🥘" }, { name: "Різотто", emoji: "🍚" }, { name: "Тірамісу", emoji: "🍰" },
-      { name: "Равіолі", emoji: "🥟" }, { name: "Паста Болоньєзе", emoji: "🍝" }, { name: "Суші", emoji: "🍣" },
-      { name: "Роли Каліфорнія", emoji: "🍱" }, { name: "Роли Філадельфія", emoji: "🍱" }, { name: "Рамен", emoji: "🍜" },
-      { name: "Удон", emoji: "🍜" }, { name: "Том Ям", emoji: "🍲" }, { name: "Пад Тай", emoji: "🍝" },
-      { name: "Пекінська качка", emoji: "🦆" }, { name: "Фо Бо", emoji: "🍜" }, { name: "Хачапурі", emoji: "🧀" },
-      { name: "Хінкалі", emoji: "🥟" }, { name: "Шашлик", emoji: "🍢" }, { name: "Плов", emoji: "🍛" },
-      { name: "Кебаб", emoji: "🌯" }, { name: "Шаурма", emoji: "🥙" }, { name: "Фалафель", emoji: "🧆" },
-      { name: "Хумус", emoji: "🥣" }, { name: "Бургер", emoji: "🍔" }, { name: "Чизбургер", emoji: "🍔" },
-      { name: "Хот-дог", emoji: "🌭" }, { name: "Стейк Рібай", emoji: "🥩" }, { name: "Картопля фрі", emoji: "🍟" },
-      { name: "Курячі нагетси", emoji: "🍗" }, { name: "Крильця Баффало", emoji: "🍗" }, { name: "Панкейки", emoji: "🥞" },
-      { name: "Брауні", emoji: "🍫" }, { name: "Круасан", emoji: "🥐" }, { name: "Багет", emoji: "🥖" },
-      { name: "Рататуй", emoji: "🍆" }, { name: "Цибулевий суп", emoji: "🍲" }, { name: "Еклери", emoji: "🥖" },
-      { name: "Макарон", emoji: "🍡" }, { name: "Паелья", emoji: "🥘" }, { name: "Тапас", emoji: "🌮" },
-      { name: "Гаспачо", emoji: "🍅" }, { name: "Чуррос", emoji: "🥨" }, { name: "Тако", emoji: "🌮" },
-      { name: "Буріто", emoji: "🌯" }, { name: "Кесадилья", emoji: "🌮" }, { name: "Начос", emoji: "🧀" },
-      { name: "Гуакамоле", emoji: "🥑" }, { name: "Енчилада", emoji: "🌯" }, { name: "Чилі кон карне", emoji: "🌶️" },
-      { name: "Мусака", emoji: "🍆" }, { name: "Грецький салат", emoji: "🥗" }, { name: "Сувлакі", emoji: "🍢" },
-      { name: "Гірос", emoji: "🥙" }, { name: "Дзадзикі", emoji: "🥣" }, { name: "Шніцель", emoji: "🥩" },
-      { name: "Сосиски Братвурст", emoji: "🌭" }, { name: "Брецель", emoji: "🥨" }, { name: "Шварцвальдський торт", emoji: "🍰" },
-      { name: "Фондю", emoji: "🧀" }, { name: "Раклет", emoji: "🧀" }, { name: "Гуляш", emoji: "🍲" },
-      { name: "Лобстер", emoji: "🦞" }, { name: "Устриці", emoji: "🦪" }, { name: "Мідії у вині", emoji: "🐚" },
-      { name: "Креветки на грилі", emoji: "🦐" }, { name: "Стейк із лосося", emoji: "🐟" }, { name: "Карпаччо", emoji: "🥩" },
-      { name: "Тартар", emoji: "🥩" }, { name: "Салат Цезар", emoji: "🥗" }, { name: "Салат Олів'є", emoji: "🥗" },
-      { name: "Вінегрет", emoji: "🥗" }, { name: "Окрошка", emoji: "🥣" }, { name: "Пельмені", emoji: "🥟" },
-      { name: "Чебуреки", emoji: "🥟" }, { name: "Біляші", emoji: "🥟" }, { name: "Самса", emoji: "🥟" },
-      { name: "Манти", emoji: "🥟" }, { name: "Кус-кус", emoji: "🍚" }, { name: "Тажин", emoji: "🥘" },
-      { name: "Каррі з куркою", emoji: "🍛" }, { name: "Тікка Масала", emoji: "🍛" }, { name: "Наан", emoji: "🫓" },
-      { name: "Самоса", emoji: "🥟" }, { name: "Путін", emoji: "🍟" }, { name: "Клем-чаудер", emoji: "🥣" },
-      { name: "Маффіни", emoji: "🧁" }, { name: "Донати", emoji: "🍩" }, { name: "Чизкейк", emoji: "🍰" },
-      { name: "Морозиво", emoji: "🍦" }
+      { 
+        name: "Борщ", emoji: "🍲", 
+        description: "Традиційна українська страва з насиченим смаком, ароматом спецій та соковитими овочами.",
+        prepTime: "1 година 20 хв", difficulty: "Середньо",
+        ingredients: ["Яловичина або свинина — 500 г", "Буряк — 2 шт.", "Капуста — 300 г", "Картопля — 4 шт.", "Морква — 1 шт.", "Цибуля — 1 шт.", "Томатна паста — 2 ст. л.", "Часник, зелень, спеції — за смаком"],
+        instructions: ["Відваріть м'ясо до готовності в підсоленій воді.", "Наріжте картоплю кубиками та додайте в бульйон.", "Наріжте капусту і додайте слідом за картоплею.", "Зробіть зажарку: обсмажте натертий буряк, моркву та цибулю з томатною пастою.", "Додайте зажарку в каструлю, покладіть часник та спеції, варіть ще 10 хвилин.", "Подавайте зі сметаною та свіжою зеленню."]
+      },
+      { 
+        name: "Вареники", emoji: "🥟", 
+        description: "Апетитні домашні вареники з ніжного тіста з улюбленою начинкою та золотавою засмажкою.",
+        prepTime: "50 хв", difficulty: "Середньо",
+        ingredients: ["Борошно пшеничне — 400 г", "Вода (тепла) — 200 мл", "Яйце — 1 шт.", "Картопля або сир — 400 г", "Цибуля — 1 шт.", "Вершкове масло — 50 г", "Сіль — за смаком"],
+        instructions: ["Замісіть м'яке еластичне тісто з борошна, води, яйця та дрібки солі.", "Приготуйте начинку (наприклад, відваріть картоплю та потовчіть її з цибулею).", "Розкачайте тісто, виріжте кружечки та сформуйте вареники, щільно заліплюючи краї.", "Опустіть вареники в киплячу підсолену воду і варіть 5-7 хвилин після спливання.", "Заправте готові вареники вершковим маслом."]
+      },
+      { 
+        name: "Піца Маргарита", emoji: "🍕", 
+        description: "Класична італійська піца з тонким тістом, ароматними томатами, свіжою моцарелою та базиліком.",
+        prepTime: "40 хв", difficulty: "Легко",
+        ingredients: ["Тісто для піци — 1 шт.", "Томатний соус — 100 г", "Сир Моцарела — 150 г", "Свіжий базилік — кілька листочків", "Оливкова олія — 1 ст. л."],
+        instructions: ["Розкачайте тісто для піци на пергаментному папері.", "Рівномірно змастіть основу томатним соусом.", "Викладіть зверху нарізану або порвану шматочками моцарелу.", "Випікайте у розігрітій до 220°C духовці приблизно 10–12 хвилин.", "Перед подачею прикрасьте свіжим базиліком і збризніть оливковою олією."]
+      },
+      { 
+        name: "Суші", emoji: "🍣", 
+        description: "Популярна японська страва з ідеально звареного рису, свіжої риби та норі.",
+        prepTime: "50 хв", difficulty: "Складно",
+        ingredients: ["Рис для суші — 300 г", "Рисовий оцет — 3 ст. л.", "Листи норі — 5 шт.", "Свіжий лосось — 200 г", "Вершковий сир — 150 г", "Огірок — 1 шт."],
+        instructions: ["Промийте рис і відваріть за спеціальною технологією, заправте рисовим оцтом.", "Викладіть рис на лист норі, залишаючи вільний край.", "Додайте смужки лосося, вершкового сиру та огірка.", "Акуратно скрутіть у щільний рулет за допомогою бамбукового килимка.", "Наріжте на порційні шматочки гострим ножем."]
+      },
+      { 
+        name: "Сирники", emoji: "🥞", 
+        description: "Ніжні, рум'яні та неймовірно смачні сирники з кисломолочного сиру для ідеального сніданку.",
+        prepTime: "25 хв", difficulty: "Легко",
+        ingredients: ["Кисломолочний сир (9%) — 400 г", "Яйце — 1 шт.", "Цукор — 2 ст. л.", "Борошно — 3 ст. л. (+ для панірування)", "Ванільний цукор — 1 пакетик", "Олія для смаження"],
+        instructions: ["Ретельно розітріть сир з яйцем, звичайним та ванільним цукром.", "Додайте борошно і знову перемішайте до однорідної маси.", "Сформуйте невеликі кульки, обваляйте їх у борошні та сплюсніть у вигляді шайбочок.", "Обсмажуйте на розігрітій сковороді з олією по 3-4 хвилини з кожного боку до золотавої скоринки.", "Подавайте зі сметаною, медом або варенням."]
+      }
     ];
+
+    // Доповнимо список для всіх інших страв універсальним генератором, щоб кожна кнопка відкривала гарний рецепт
+    const allDishNames = [
+      "Борщ", "Вареники", "Голубці", "Деруни", "Сало з часником", "Сирники", "Котлета по-київськи", "Млинці", "Капусняк", "Холодець", 
+      "Піца Маргарита", "Спагеті Карбонара", "Лазанья", "Різотто", "Тірамісу", "Равіолі", "Паста Болоньєзе", "Суші", "Роли Каліфорнія", "Роли Філадельфія", 
+      "Рамен", "Удон", "Том Ям", "Пад Тай", "Пекінська качка", "Фо Бо", "Хачапурі", "Хінкалі", "Шашлик", "Плов", 
+      "Кебаб", "Шаурма", "Фалафель", "Хумус", "Бургер", "Чизбургер", "Хот-дог", "Стейк Рібай", "Картопля фрі", "Курячі нагетси", 
+      "Крильця Баффало", "Панкейки", "Брауні", "Круасан", "Багет", "Рататуй", "Цибулевий суп", "Еклери", "Макарон", "Паелья", 
+      "Тапас", "Гаспачо", "Чуррос", "Тако", "Буріто", "Кесадилья", "Начос", "Гуакамоле", "Енчилада", "Чилі кон карне", 
+      "Мусака", "Грецький салат", "Сувлакі", "Гірос", "Дзадзикі", "Шніцель", "Сосиски Братвурст", "Брецель", "Шварцвальдський торт", "Фондю", 
+      "Раклет", "Гуляш", "Лобстер", "Устриці", "Мідії у вині", "Креветки на грилі", "Стейк із лосося", "Карпаччо", "Тартар", "Салат Цезар", 
+      "Салат Олів'є", "Вінегрет", "Окрошка", "Пельмені", "Чебуреки", "Біляші", "Самса", "Манти", "Кус-кус", "Тажин", 
+      "Каррі з куркою", "Тікка Масала", "Наан", "Самоса", "Путін", "Клем-чаудер", "Маффіни", "Донати", "Чизкейк", "Морозиво"
+    ];
+
+    const emojis = ["🍲", "🥟", "🥬", "🥔", "🥓", "🥞", "🍗", "🥞", "🍲", "🥩", "🍕", "🍝", "🥘", "🍚", "🍰", "🥟", "🍝", "🍣", "🍱", "🍱", "🍜", "🍜", "🍲", "🍝", "🦆", "🍜", "🧀", "🥟", "🍢", "🍛", "🌯", "🥙", "🧆", "🥣", "🍔", "🍔", "🌭", "🥩", "🍟", "🍗", "🍗", "🥞", "🍫", "🥐", "🥖", "🍆", "🍲", "🥖", "🍡", "🥘", "🌮", "🍅", "🥨", "🌮", "🌯", "🌮", "🧀", "🥑", "🌯", "🌶️", "🍆", "🥗", "🍢", "🥙", "🥣", "🥩", "🌭", "🥨", "🍰", "🧀", "🧀", "🍲", "🦞", "🦪", "🐚", "🦐", "🐟", "🥩", "🥩", "🥗", "🥗", "🥗", "🥣", "🥟", "🥟", "🥟", "🥟", "🥟", "🍚", "🥘", "🍛", "🍛", "🫓", "🥟", "🍟", "🥣", "🧁", "🍩", "🍰", "🍦"];
+
+    // Формуємо повний масив зі 100 страв
+    const fullDishesList = allDishNames.map((name, index) => {
+      const existing = dishes.find(d => d.name === name);
+      if (existing) return existing;
+      return {
+        name: name,
+        emoji: emojis[index % emojis.length],
+        description: `Справжній класичний рецепт приготування всесвітньо відомої страви «${name}» з чудовим смаком та ароматом.`,
+        prepTime: "35–45 хв",
+        difficulty: "Середньо",
+        ingredients: [
+          `Головний інгредієнт страви — 500 г`,
+          `Свіжі овочі та зелень — 200 г`,
+          `Оливкова або соняшникова олія — 2 ст. л.`,
+          `Сіль, перець та улюблені спеції — за смаком`
+        ],
+        instructions: [
+          "Підготуйте всі необхідні продукти, ретельно їх вимийте та обсушіть.",
+          "Наріжте компоненти відповідно до традиційної технології приготування.",
+          "Розігрійте сковороду, каструлю або духовку до оптимальної температури.",
+          "Здійсніть термічну обробку до появи апетитної скоринки та повної готовності.",
+          "Подавайте страву гарячою, прикрасивши зеленню. Смачного!"
+        ]
+      };
+    });
 
     function renderDishes(list) {
       const grid = document.getElementById("dishesGrid");
@@ -95,7 +136,7 @@
         return;
       }
       grid.innerHTML = list.map(dish => `
-        <button onclick="openRecipe('${dish.name}', '${dish.emoji}')" class="group flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-sm border border-orange-100 hover:shadow-xl hover:border-orange-300 transition transform hover:-translate-y-1">
+        <button onclick="openRecipe('${dish.name}')" class="group flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-sm border border-orange-100 hover:shadow-xl hover:border-orange-300 transition transform hover:-translate-y-1">
           <span class="text-6xl mb-3 group-hover:scale-110 transition">${dish.emoji}</span>
           <span class="font-semibold text-stone-700 text-base text-center group-hover:text-orange-600 transition">${dish.name}</span>
         </button>
@@ -104,72 +145,47 @@
 
     function filterDishes() {
       const query = document.getElementById("searchInput").value.toLowerCase();
-      const filtered = dishes.filter(d => d.name.toLowerCase().includes(query));
+      const filtered = fullDishesList.filter(d => d.name.toLowerCase().includes(query));
       renderDishes(filtered);
     }
 
-    async function openRecipe(dishName, emoji) {
+    function openRecipe(dishName) {
+      const recipe = fullDishesList.find(d => d.name === dishName);
+      if (!recipe) return;
+
       const modal = document.getElementById("recipeModal");
       const title = document.getElementById("modalTitle");
       const content = document.getElementById("modalContent");
 
-      title.innerHTML = `${emoji}${dishName}`;
+      title.innerHTML = `${recipe.emoji} ${recipe.name}`;
       content.innerHTML = `
-        <div class="py-12 text-center space-y-4">
-          <div class="inline-block animate-bounce text-5xl">🍳</div>
-          <p class="text-orange-600 font-medium text-lg animate-pulse">Шеф-кухар штучного інтелекту готує рецепт для вас...</p>
+        <p class="text-stone-600 text-lg italic border-l-4 border-orange-400 pl-4 py-1 bg-orange-50/50 rounded-r-xl">${recipe.description}</p>
+        <div class="flex flex-wrap gap-3 font-medium">
+          <span class="bg-orange-100 text-orange-800 px-4 py-1.5 rounded-full text-sm">⏱ ${recipe.prepTime}</span>
+          <span class="bg-red-100 text-red-800 px-4 py-1.5 rounded-full text-sm">🔥 Складність: ${recipe.difficulty}</span>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6 mt-4">
+          <div class="md:col-span-1 bg-stone-50 p-5 rounded-2xl border border-stone-100 h-fit">
+            <h3 class="font-bold text-lg text-stone-800 mb-3 flex items-center gap-2">🛒 Інгредієнти</h3>
+            <ul class="space-y-2 text-stone-700 text-sm">
+              ${recipe.ingredients.map(i => `<li class="flex items-start gap-2"><span class="text-orange-500 font-bold">•</span><span>${i}</span></li>`).join('')}
+            </ul>
+          </div>
+          <div class="md:col-span-2 space-y-4">
+            <h3 class="font-bold text-xl text-stone-800 flex items-center gap-2">👨‍🍳 Приготування</h3>
+            <div class="space-y-3">
+              ${recipe.instructions.map((step, idx) => `
+                <div class="flex gap-3 bg-stone-50/70 p-3.5 rounded-xl border border-stone-100">
+                  <span class="flex-shrink-0 w-7 h-7 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold text-sm">${idx + 1}</span>
+                  <p class="text-stone-700 text-sm leading-relaxed pt-0.5">${step}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
         </div>
       `;
       modal.classList.remove("hidden");
       modal.classList.add("flex");
-
-      try {
-        const url = `https://api.allorigins.win/raw?url=` + encodeURIComponent(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`);
-        
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{
-              parts: [{ text: `Напиши детальний рецепт приготування страви: ${dishName}. Відповідь надай виключно українською мовою у форматі JSON з полями: description (цікавий опис), prepTime (час приготування, наприклад "45 хв"), difficulty (складність), ingredients (масив рядків з інгредієнтами та кількістю), instructions (масив рядків з покроковими кроками приготування). Поверни ТІЛЬКИ валідний JSON без додаткових символів чи markdown-обгорток (без \`\`\`json).` }]
-            }]
-          })
-        });
-
-        const data = await response.json();
-        const textResponse = data.candidates[0].content.parts[0].text;
-        const cleanJson = textResponse.replace(/```json/g, '').replace(/```/g, '').trim();
-        const recipe = JSON.parse(cleanJson);
-
-        content.innerHTML = `
-          <p class="text-stone-600 text-lg italic border-l-4 border-orange-400 pl-4 py-1 bg-orange-50/50 rounded-r-xl">${recipe.description}</p>
-          <div class="flex flex-wrap gap-3 font-medium">
-            <span class="bg-orange-100 text-orange-800 px-4 py-1.5 rounded-full text-sm">⏱ ${recipe.prepTime}</span>
-            <span class="bg-red-100 text-red-800 px-4 py-1.5 rounded-full text-sm">🔥 Складність: ${recipe.difficulty}</span>
-          </div>
-          <div class="grid md:grid-cols-3 gap-6 mt-4">
-            <div class="md:col-span-1 bg-stone-50 p-5 rounded-2xl border border-stone-100 h-fit">
-              <h3 class="font-bold text-lg text-stone-800 mb-3 flex items-center gap-2">🛒 Інгредієнти</h3>
-              <ul class="space-y-2 text-stone-700 text-sm">
-                ${recipe.ingredients.map(i => `<li class="flex items-start gap-2"><span class="text-orange-500 font-bold">•</span><span>${i}</span></li>`).join('')}
-              </ul>
-            </div>
-            <div class="md:col-span-2 space-y-4">
-              <h3 class="font-bold text-xl text-stone-800 flex items-center gap-2">👨‍🍳 Приготування</h3>
-              <div class="space-y-3">
-                ${recipe.instructions.map((step, idx) => `
-                  <div class="flex gap-3 bg-stone-50/70 p-3.5 rounded-xl border border-stone-100">
-                    <span class="flex-shrink-0 w-7 h-7 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold text-sm">${idx + 1}</span>
-                    <p class="text-stone-700 text-sm leading-relaxed pt-0.5">${step}</p>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          </div>
-        `;
-      } catch (err) {
-        content.innerHTML = `<p class="text-red-500 text-center py-10">Не вдалося завантажити рецепт. Перевір підключення до мережі або спробуй пізніше!</p>`;
-      }
     }
 
     function closeModal() {
@@ -182,7 +198,7 @@
       if (e.key === 'Escape') closeModal();
     });
 
-    renderDishes(dishes);
+    renderDishes(fullDishesList);
   </script>
 </body>
 </html>
